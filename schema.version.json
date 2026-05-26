@@ -3,7 +3,7 @@
     "$schema": {
       "type": "string",
       "enum": [
-        "https://raw.githubusercontent.com/schema-json/version-schema/main/schema.version.json#"
+        "https://raw.githubusercontent.com/schema-json/schema-json/main/schema.version.json#"
       ],
       "description": "Custom version file JSON schema reference for Bicep modules."
     },
