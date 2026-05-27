@@ -3,9 +3,6 @@
 	"title": "Prepacked Hub and Spoke Connectivity Deployment Parameters",
 	"description": "ARM parameter file schema for the iac-bicep-prepacked-connectivity module",
 	"type": "object",
-	"required": ["$schema", "contentVersion", "parameters"],
-	"type": "object",
-	"additionalProperties": false,
 	"required": [
 		"$schema",
 		"contentVersion",
@@ -13,8 +10,7 @@
 	],
 	"properties": {
 		"$schema": {
-			"type": "string",
-			"const": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#"
+			"type": "string"
 		},
 		"contentVersion": {
 			"type": "string",
@@ -22,30 +18,78 @@
 		},
 		"parameters": {
 			"type": "object",
-			"additionalProperties": false,
 			"required": [
 				"connectivity",
 				"identity",
 				"management"
 			],
+			"additionalProperties": false,
 			"properties": {
 				"connectivity": {
-					"$ref": "#/$defs/scopeParameter"
+					"type": "object",
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"$ref": "#/$defs/scopeParameter"
+						}
+					}
 				},
 				"identity": {
-					"$ref": "#/$defs/scopeParameter"
+					"type": "object",
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"$ref": "#/$defs/scopeParameter"
+						}
+					}
 				},
 				"management": {
-					"$ref": "#/$defs/scopeParameter"
+					"type": "object",
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"$ref": "#/$defs/scopeParameter"
+						}
+					}
 				},
 				"avd": {
-					"$ref": "#/$defs/scopeParameter"
+					"type": "object",
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"$ref": "#/$defs/scopeParameter"
+						}
+					}
 				},
 				"prod": {
-					"$ref": "#/$defs/scopeParameter"
+					"type": "object",
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"$ref": "#/$defs/scopeParameter"
+						}
+					}
 				},
 				"test": {
-					"$ref": "#/$defs/scopeParameter"
+					"type": "object",
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"$ref": "#/$defs/scopeParameter"
+						}
+					}
 				}
 			}
 		}
