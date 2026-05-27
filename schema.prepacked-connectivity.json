@@ -1,0 +1,92 @@
+{
+	"$schema": "https://raw.githubusercontent.com/schema-json/schema-json/main/schema.prepacked-connectivity.json#",
+	"$id": "./schema.prepacked-connectivity.json",
+	"title": "Prepacked Hub and Spoke Connectivity Deployment Parameters",
+	"type": "object",
+	"additionalProperties": false,
+	"required": [
+		"$schema",
+		"contentVersion",
+		"parameters"
+	],
+	"properties": {
+		"$schema": {
+			"type": "string",
+			"const": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#"
+		},
+		"contentVersion": {
+			"type": "string",
+			"pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$"
+		},
+		"parameters": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"connectivity",
+				"identity",
+				"management"
+			],
+			"properties": {
+				"connectivity": {
+					"$ref": "#/$defs/scopeParameter"
+				},
+				"identity": {
+					"$ref": "#/$defs/scopeParameter"
+				},
+				"management": {
+					"$ref": "#/$defs/scopeParameter"
+				},
+				"avd": {
+					"$ref": "#/$defs/scopeParameter"
+				},
+				"prod": {
+					"$ref": "#/$defs/scopeParameter"
+				},
+				"test": {
+					"$ref": "#/$defs/scopeParameter"
+				}
+			}
+		}
+	},
+	"$defs": {
+		"subscriptionGuid": {
+			"type": "string",
+			"pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+		},
+		"subscriptionValue": {
+			"anyOf": [
+				{
+					"type": "string",
+					"const": ""
+				},
+				{
+					"$ref": "#/$defs/subscriptionGuid"
+				}
+			]
+		},
+		"scopeValue": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"subscription"
+			],
+			"properties": {
+				"subscription": {
+					"$ref": "#/$defs/subscriptionValue"
+				}
+			}
+		},
+		"scopeParameter": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"value"
+			],
+			"properties": {
+				"value": {
+					"$ref": "#/$defs/scopeValue"
+				}
+			}
+		}
+	}
+}
