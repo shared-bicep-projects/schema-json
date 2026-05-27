@@ -1,154 +1,126 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Landing Zone Parameters",
-  "description": "ARM parameter file schema for the iac-bicep-landing-zone module",
-  "type": "object",
-  "required": ["$schema", "contentVersion", "parameters"],
-  "properties": {
-    "$schema": { "type": "string" },
-    "contentVersion": {
-      "type": "string",
-      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$"
-    },
-    "parameters": {
-      "type": "object",
-      "required": [
-        "rootCompany",
-        "landingzones",
-        "platform",
-        "security",
-        "connectivity",
-        "identity",
-        "management"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "rootCompany": {
-          "type": "object",
-          "required": ["value"],
-          "properties": {
-            "value": {
-              "type": "object",
-              "required": ["name"],
-              "additionalProperties": false,
-              "properties": {
-                "name": { "type": "string", "minLength": 1 },
-                "reader": { "$ref": "#/$defs/principalIdArray" },
-                "contributor": { "$ref": "#/$defs/principalIdArray" }
-              }
-            }
-          }
-        },
-        "landingzones": {
-          "type": "object",
-          "required": ["value"],
-          "properties": {
-            "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
-          }
-        },
-        "platform": {
-          "type": "object",
-          "required": ["value"],
-          "properties": {
-            "value": { "$ref": "#/$defs/mgObjectNoSubscriptions" }
-          }
-        },
-        "connectivity": {
-          "type": "object",
-          "required": ["value"],
-          "properties": {
-            "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
-          }
-        },
-        "identity": {
-          "type": "object",
-          "required": ["value"],
-          "properties": {
-            "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
-          }
-        },
-        "management": {
-          "type": "object",
-          "required": ["value"],
-          "properties": {
-            "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
-          }
-        },
-        "decomissioned": {
-          "type": "object",
-          "required": ["value"],
-          "properties": {
-            "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
-          }
-        },
-        "sandbox": {
-          "type": "object",
-          "required": ["value"],
-          "properties": {
-            "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
-          }
-        },
-        "security": {
-          "type": "object",
-          "required": ["value"],
-          "properties": {
-            "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
-          }
-        },
-        "avd": {
-          "type": "object",
-          "required": ["value"],
-          "properties": {
-            "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
-          }
-        },
-        "prod": {
-          "type": "object",
-          "required": ["value"],
-          "properties": {
-            "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
-          }
-        },
-        "test": {
-          "type": "object",
-          "required": ["value"],
-          "properties": {
-            "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
-          }
-        }
-      }
-    }
-  },
-  "$defs": {
-    "principalIdArray": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "description": "Azure AD principal (group/user/SP) object ID"
-      }
-    },
-    "mgObjectNoSubscriptions": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "reader": { "$ref": "#/$defs/principalIdArray" },
-        "contributor": { "$ref": "#/$defs/principalIdArray" }
-      }
-    },
-    "mgObjectWithSubscriptions": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "subscriptions": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "description": "Azure subscription ID"
-          }
-        },
-        "reader": { "$ref": "#/$defs/principalIdArray" },
-        "contributor": { "$ref": "#/$defs/principalIdArray" }
-      }
-    }
-  }
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"title": "Prepacked Hub and Spoke Connectivity Deployment Parameters",
+	"description": "ARM parameter file schema for the iac-bicep-prepacked-connectivity module",
+	"type": "object",
+	"required": [
+		"$schema",
+		"contentVersion",
+		"parameters"
+	],
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"contentVersion": {
+			"type": "string",
+			"pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$"
+		},
+		"parameters": {
+			"type": "object",
+			"required": [
+				"connectivity",
+				"identity",
+				"management"
+			],
+			"additionalProperties": false,
+			"properties": {
+				"connectivity": {
+					"type": "object",
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"$ref": "#/$defs/scopeValue"
+						}
+					}
+				},
+				"identity": {
+					"type": "object",
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"$ref": "#/$defs/scopeValue"
+						}
+					}
+				},
+				"management": {
+					"type": "object",
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"$ref": "#/$defs/scopeValue"
+						}
+					}
+				},
+				"avd": {
+					"type": "object",
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"$ref": "#/$defs/scopeValue"
+						}
+					}
+				},
+				"prod": {
+					"type": "object",
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"$ref": "#/$defs/scopeValue"
+						}
+					}
+				},
+				"test": {
+					"type": "object",
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"$ref": "#/$defs/scopeValue"
+						}
+					}
+				}
+			}
+		}
+	},
+	"$defs": {
+		"subscriptionGuid": {
+			"type": "string",
+			"pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+		},
+		"subscriptionValue": {
+			"anyOf": [
+				{
+					"type": "string",
+					"const": ""
+				},
+				{
+					"$ref": "#/$defs/subscriptionGuid"
+				}
+			]
+		},
+		"scopeValue": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"subscription"
+			],
+			"properties": {
+				"subscription": {
+					"$ref": "#/$defs/subscriptionValue"
+				}
+			}
+		}
+	}
 }
