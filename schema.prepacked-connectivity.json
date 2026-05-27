@@ -1,7 +1,9 @@
 {
 	"$schema": "https://raw.githubusercontent.com/schema-json/schema-json/main/schema.prepacked-connectivity.json#",
-	"$id": "./schema.prepacked-connectivity.json",
 	"title": "Prepacked Hub and Spoke Connectivity Deployment Parameters",
+	"description": "ARM parameter file schema for the iac-bicep-prepacked-connectivity module",
+	"type": "object",
+	"required": ["$schema", "contentVersion", "parameters"],
 	"type": "object",
 	"additionalProperties": false,
 	"required": [
