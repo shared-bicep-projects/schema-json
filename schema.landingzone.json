@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://raw.githubusercontent.com/schema-json/schema-json/main/schema.landingzone.json#",
   "title": "Landing Zone Parameters",
   "description": "ARM parameter file schema for the iac-bicep-landing-zone module",
   "type": "object",
