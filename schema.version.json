@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "enum": [
+        "https://raw.githubusercontent.com/schema-json/schema-json/main/schema.version.json#"
+      ],
+      "description": "Custom version file JSON schema reference for Bicep modules."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v?(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-(?:[\\da-z\\-]+)(?:\\.(?:[\\da-z\\-]+))*)?$",
+      "description": "The major.minor.patch-pre version to use as the basis for version calculations."
+    }
+  },
+  "required": [
+    "$schema",
+    "version"
+  ],
+  "additionalProperties": false,
+  "$comment": "This schema file is based on AVM versioning - https://azure.github.io/Azure-Verified-Modules/"
+}
