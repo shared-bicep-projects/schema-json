@@ -50,6 +50,11 @@
                                 "subscription"
                             ],
                             "properties": {
+                                "deployBasicFW": {
+                                    "type": "boolean",
+                                    "description": "Flag to deploy basic firewall.",
+                                    "default": true
+                                },
                                 "subscription": {
                                     "$ref": "#/$defs/subscriptionGuid"
                                 },
