@@ -1,0 +1,106 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "iac-bicep-foundation-platform-ag Module Deployment Parameters",
+    "type": "object",
+    "required": [
+        "parameters"
+    ],
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "contentVersion": {
+            "type": "string"
+        },
+        "parameters": {
+            "type": "object",
+            "required": [
+                "subscriptionGuId",
+                "resourceGroupName",
+                "customerNavId"
+            ],
+            "properties": {
+                "subscriptionGuId": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                },
+                "resourceGroupName": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                },
+                "customerNavId": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                },
+                "actionGroupName": {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                },
+                "actionGroupShortName": {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 12
+                        }
+                    }
+                },
+                "webhookBaseUri": {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "functionCode": {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "tags": {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+}
