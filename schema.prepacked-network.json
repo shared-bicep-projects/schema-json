@@ -128,11 +128,19 @@
                 },
                 "tags": {
                     "type": "object",
-                    "description": "Optional tags dictionary to apply to all deployed resources. Individual scope tags will override these in case of conflict.",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "default": {}
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "description": "Optional tags dictionary to apply to all deployed resources. Individual scope tags will override these in case of conflict.",
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "default": {}
+                        }
+                    }
                 }
             }
         }
