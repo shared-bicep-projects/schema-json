@@ -14,9 +14,7 @@
         },
         "parameters": {
             "type": "object",
-            "required": [
-                "resourceGroupName"
-            ],
+            "required": [],
             "properties": {
                 "subscriptionGuId": {
                     "type": "object",
