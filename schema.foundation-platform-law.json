@@ -16,7 +16,7 @@
       "required": ["location"],
       "additionalProperties": false,
       "properties": {
-        "subscriptionGuId": {
+        "subscriptionGuid": {
           "type": "object",
           "required": ["value"],
           "properties": {
