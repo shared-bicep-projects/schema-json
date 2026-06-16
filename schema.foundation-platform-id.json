@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Platform Identity",
+  "description": "Validates parameter files for the iac-bicep-foundation-platform-identity module.",
+  "type": "object",
+  "required": ["$schema", "contentVersion", "parameters"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "contentVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "identitySubscriptionGuid",
+        "managementSubscriptionGuid"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "type": "object",
+          "required": ["value"],
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "Azure region for UDMI resources (e.g. westeurope)"
+            }
+          }
+        },
+        "identitySubscriptionGuid": {
+          "type": "object",
+          "required": ["value"],
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "type": "string",
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              "description": "Subscription ID of the ALZ Identity subscription (Platform MG)"
+            }
+          }
+        },
+        "identityRgName": {
+          "type": "object",
+          "required": ["value"],
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "Resource Group name for platform UDMIs in the Identity subscription"
+            }
+          }
+        },
+        "managementSubscriptionGuid": {
+          "type": "object",
+          "required": ["value"],
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "type": "string",
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              "description": "Subscription ID of the ALZ Management subscription (Platform MG)"
+            }
+          }
+        },
+        "targetSubscriptionGuids": {
+          "type": "object",
+          "required": ["value"],
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "type": "array",
+              "description": "All subscription IDs that should receive role assignments (Identity, Management, Connectivity, Landing Zones)",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+              }
+            }
+          }
+        },
+        "tags": {
+          "type": "object",
+          "required": ["value"],
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "type": "object",
+              "description": "Tags applied to all UDMI resources",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
