@@ -1,0 +1,92 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "iac-bicep-foundation-platform-aa Module Deployment Parameters",
+    "type": "object",
+    "required": [
+        "$schema",
+        "contentVersion",
+        "parameters"
+    ],
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "contentVersion": {
+            "type": "string"
+        },
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                },
+                "subscriptionGuid": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                        }
+                    }
+                },
+                "resourceGroupName": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                },
+                "automationAccountName": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                },
+                "skuName": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                },
+                "tags": {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+}
