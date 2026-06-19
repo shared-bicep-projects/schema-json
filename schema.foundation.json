@@ -1,0 +1,199 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "iac-bicep-foundation parameters schema",
+	"type": "object",
+	"additionalProperties": false,
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"contentVersion": {
+			"type": "string"
+		},
+		"parameters": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"commonParameters"
+			],
+			"properties": {
+				"commonParameters": {
+					"type": "object",
+					"additionalProperties": false,
+					"required": [
+						"value"
+					],
+					"properties": {
+						"value": {
+							"type": "object",
+							"additionalProperties": false,
+							"required": [
+								"identitySubscriptionGuid",
+								"managementSubscriptionGuid"
+							],
+							"properties": {
+								"identitySubscriptionGuid": {
+									"type": "string",
+									"pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+								},
+								"managementSubscriptionGuid": {
+									"type": "string",
+									"pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+								},
+								"identityRgName": {
+									"type": "string"
+								},
+								"monitoringRgName": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"automationAccount": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"value": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"automationAccountName": {
+									"type": "string",
+									"minLength": 6,
+									"maxLength": 50
+								},
+								"automationAccountSkuName": {
+									"type": "string",
+									"enum": [
+										"Basic",
+										"Free",
+										""
+									]
+								},
+								"location": {
+									"type": "string"
+								},
+								"tags": {
+									"type": "object",
+									"additionalProperties": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"actionGroup": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"value": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"customerNavId": {
+									"type": "string",
+									"pattern": "^[0-9]+$"
+								},
+								"actionGroupName": {
+									"type": "string",
+									"minLength": 1,
+									"pattern": "^(?!.*[\\x00-\\x1F\\x7F`:<>+/&%\\\\?|])(?!.*[ .]$).+$"
+								},
+								"actionGroupShortName": {
+									"type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 12
+
+								},
+								"webhookBaseUri": {
+									"type": "string"
+								},
+								"functionCode": {
+									"type": "string"
+								},
+								"tags": {
+									"type": "object",
+									"additionalProperties": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"logAnalyticsWorkspace": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"value": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"workspaceName": {
+									"type": "string",
+                                    "minLength": 4,
+                                    "maxLength": 63
+								},
+								"location": {
+									"type": "string"
+								},
+								"retentionInDays": {
+									"type": "number"
+								},
+								"dailyQuotaGb": {
+									"type": "number"
+								},
+								"tags": {
+									"type": "object",
+									"additionalProperties": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"userAssignedManagedIdentity": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"value": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"location": {
+									"type": "string"
+								},
+								"tags": {
+									"type": "object",
+									"additionalProperties": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"commonTags": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"value": {
+							"type": "object",
+							"additionalProperties": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"required": [
+		"$schema",
+		"contentVersion",
+		"parameters"
+	]
+}
