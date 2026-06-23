@@ -178,7 +178,7 @@
                         }
                     }
                 },
-                "commonTags": {
+                "rgTags": {
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
