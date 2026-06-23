@@ -45,6 +45,9 @@
                                 },
                                 "monitoringRgName": {
                                     "type": "string"
+                                },
+                                "location": {
+                                    "type": "string"
                                 }
                             }
                         }
