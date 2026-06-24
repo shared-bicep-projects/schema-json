@@ -16,8 +16,7 @@
     "parameters": {
       "type": "object",
       "required": [
-        "identitySubscriptionGuid",
-        "managementSubscriptionGuid"
+        "identitySubscriptionGuid"
       ],
       "additionalProperties": false,
       "properties": {
