@@ -178,7 +178,19 @@
                         }
                     }
                 },
-                "rgTags": {
+                "managementRgTags": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "identityRgTags": {
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
