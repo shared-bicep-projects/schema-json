@@ -166,42 +166,30 @@
                             "additionalProperties": false,
                             "properties": {
                                 "uamiList": {
-                                    "type": "object",
-                                    "required": [
-                                        "value"
-                                    ],
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "value": {
-                                            "type": "array",
-                                            "description": "List of User Assigned Managed Identities to create",
-                                            "minItems": 1,
-                                            "items": {
-                                                "type": "object",
-                                                "required": [
-                                                    "name",
-                                                    "type"
-                                                ],
-                                                "additionalProperties": false,
-                                                "properties": {
-                                                    "name": {
-                                                        "type": "string",
-                                                        "minLength": 3,
-                                                        "maxLength": 128,
-                                                        "description": "Name of the User Assigned Managed Identity",
-                                                        "pattern": "^id"
-                                                    },
-                                                    "type": {
-                                                        "type": "string",
-                                                        "description": "Type/role classification of the User Assigned Managed Identity",
-                                                        "enum": [
-                                                            "PlatformContributor",
-                                                            "PlatformMonitoring",
-                                                            "PlatformVmMgmt",
-                                                            "PlatformBackup"
-                                                        ]
-                                                    }
-                                                }
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "items": {
+                                        "type": "object",
+                                        "required": [
+                                            "name",
+                                            "type"
+                                        ],
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "minLength": 3,
+                                                "maxLength": 128,
+                                                "pattern": "^id"
+                                            },
+                                            "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "PlatformContributor",
+                                                    "PlatformMonitoring",
+                                                    "PlatformVmMgmt",
+                                                    "PlatformBackup"
+                                                ]
                                             }
                                         }
                                     }
