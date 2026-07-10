@@ -1,0 +1,199 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ARM Template Parameters - iac-bicep-cop-credentials sub-scope (full-parameters)",
+    "description": "Parameter file schema for the iac-bicep-cop-credentials sub-scope full-parameters test deployment.",
+    "type": "object",
+    "required": ["$schema", "contentVersion", "parameters"],
+    "additionalProperties": false,
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "description": "The URI of the JSON schema for this parameters file."
+        },
+        "contentVersion": {
+            "type": "string",
+            "description": "Version of the content in major.minor.build.revision format.",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "parameters": {
+            "type": "object",
+            "description": "Deployment parameter values.",
+            "required": ["commonParameters"],
+            "additionalProperties": false,
+            "properties": {
+                "commonParameters": {
+                    "type": "object",
+                    "description": "Common subscription identifiers required by the module.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "description": "Object containing shared subscription GUIDs and optional resource group names.",
+                            "required": ["identitySubscriptionGuid", "managementSubscriptionGuid"],
+                            "additionalProperties": false,
+                            "properties": {
+                                "identitySubscriptionGuid": {
+                                    "type": "string",
+                                    "description": "Subscription GUID for the identity subscription.",
+                                    "minLength": 36,
+                                    "maxLength": 36,
+                                    "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                                },
+                                "managementSubscriptionGuid": {
+                                    "type": "string",
+                                    "description": "Subscription GUID for the management subscription.",
+                                    "minLength": 36,
+                                    "maxLength": 36,
+                                    "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                                },
+                                "identityRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name for the identity subscription.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "monitoringRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name for the foundation monitoring resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copCredRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name for Cop-Credential resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "location": {
+                                    "type": "string",
+                                    "description": "Azure region for resource group deployments. Defaults to the deployment location if omitted."
+                                }
+                            }
+                        }
+                    }
+                },
+                "foundationResources": {
+                    "type": "object",
+                    "description": "Names and location of pre-existing foundation resources.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "description": "Object containing references to existing foundation resources.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "contributorUamiName": {
+                                    "type": "string",
+                                    "description": "Name of the User Assigned Managed Identity (UAMI) deployed by the foundation module.",
+                                    "minLength": 3,
+                                    "maxLength": 128
+                                },
+                                "monitoringUamiName": {
+                                    "type": "string",
+                                    "description": "Name of the User Assigned Managed Identity (UAMI) deployed by the foundation module.",
+                                    "minLength": 3,
+                                    "maxLength": 128
+                                },
+                                "logAnalyticsWorkspaceName": {
+                                    "type": "string",
+                                    "description": "Name of the Log Analytics Workspace deployed by the foundation module.",
+                                    "minLength": 4,
+                                    "maxLength": 63
+                                },
+                                "automationAccountName": {
+                                    "type": "string",
+                                    "description": "Name of the Automation Account deployed by the foundation module.",
+                                    "minLength": 6,
+                                    "maxLength": 50
+                                },
+                                "actionGroupName": {
+                                    "type": "string",
+                                    "description": "Name of the Action Group deployed by the foundation module.",
+                                    "minLength": 1,
+                                    "maxLength": 260
+                                },
+                                "location": {
+                                    "type": "string",
+                                    "description": "Azure region used to resolve default names for foundation resources. Defaults to the deployment location if omitted."
+                                }
+                            }
+                        }
+                    }
+                },
+                "copContainerAppTags": {
+                    "type": "object",
+                    "description": "Tags applied to all Cop-ContainerApp resources.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "description": "Object containing tag key-value pairs.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "Application": {
+                                    "type": "string",
+                                    "description": "Application tag value."
+                                },
+                                "AutoDocMonitoring": {
+                                    "type": "string",
+                                    "description": "AutoDocMonitoring tag value."
+                                },
+                                "AutoOpsCOP": {
+                                    "type": "string",
+                                    "description": "AutoOpsCOP tag value."
+                                },
+                                "AutoOpsMonitoring": {
+                                    "type": "string",
+                                    "description": "AutoOpsMonitoring tag value."
+                                },
+                                "AutoOpsType": {
+                                    "type": "string",
+                                    "description": "AutoOpsType tag value."
+                                },
+                                "COPid": {
+                                    "type": "string",
+                                    "description": "COPid tag value."
+                                },
+                                "Environment": {
+                                    "type": "string",
+                                    "description": "Environment tag value."
+                                },
+                                "Owner": {
+                                    "type": "string",
+                                    "description": "Owner tag value."
+                                },
+                                "Country": {
+                                    "type": "string",
+                                    "description": "Country tag value."
+                                },
+                                "Description": {
+                                    "type": "string",
+                                    "description": "Description tag value."
+                                }
+                            }
+                        }
+                    }
+                },
+                "targetSubscriptionIds": {
+                    "type": "object",
+                    "description": "Subscription IDs",
+                    "properties": {
+                        "value": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "minLength": 36,
+                                "maxLength": 36,
+                                "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                            }
+                        }
+                    },
+                    "required": ["value"]
+                }
+            }
+        }
+    }
+}
