@@ -74,7 +74,7 @@
             "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
           }
         },
-        "decomissioned": {
+        "decommissioned": {
           "type": "object",
           "required": ["value"],
           "properties": {
