@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git status)",
+      "Read(C:\\CloudPowerHouse\\IaC\\Github-IaC-Bicep-Modules\\modules\\**)"
+    ],
+    "deny": [
+      "Bash(git push *)",
+      "Bash(az deployment * create *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)"
+    ]
+  },
+  "includeGitInstructions": false,
+  "autoCompactEnabled": true
+}
