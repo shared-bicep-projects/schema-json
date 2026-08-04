@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "ARM Template Parameters - iac-bicep-cop-fd (full-parameters)",
+    "title": "ARM Template Parameters - COP Azure Front Door (iac-bicep-cop-fd)",
     "description": "Parameter file schema for the iac-bicep-cop-fd mg-scope and sub-scope full-parameters test deployments.",
     "type": "object",
     "required": ["$schema", "contentVersion", "parameters"],

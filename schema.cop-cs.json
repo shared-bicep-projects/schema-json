@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "ARM Template Parameters - iac-bicep-cop-cs (full-parameters)",
+    "title": "ARM Template Parameters - COP Communication Service (iac-bicep-cop-cs)",
     "description": "Parameter file schema for the iac-bicep-cop-cs mg-scope and sub-scope full-parameters test deployments.",
     "type": "object",
     "required": ["$schema", "contentVersion", "parameters"],

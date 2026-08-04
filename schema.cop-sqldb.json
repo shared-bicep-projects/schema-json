@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "ARM Template Parameters - iac-bicep-cop-sqldb (full-parameters)",
+    "title": "ARM Template Parameters - COP SQL Database (iac-bicep-cop-sqldb)",
     "description": "Parameter file schema for the iac-bicep-cop-sqldb mg-scope and sub-scope full-parameters test deployments.",
     "type": "object",
     "required": ["$schema", "contentVersion", "parameters"],

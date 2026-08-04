@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "ARM Template Parameters - iac-bicep-cop-agw (full-parameters)",
+    "title": "ARM Template Parameters - COP Azure Application Gateway (iac-bicep-cop-agw)",
     "description": "Parameter file schema for the iac-bicep-cop-agw mg-scope and sub-scope full-parameters test deployments.",
     "type": "object",
     "required": ["$schema", "contentVersion", "parameters"],
