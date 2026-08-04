@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "ARM Template Parameters - iac-bicep-cop-ca (full-parameters)",
-    "description": "Parameter file schema for the iac-bicep-cop-ca mg-scope and sub-scope full-parameters test deployments.",
+    "title": "ARM Template Parameters - iac-bicep-cop-st (full-parameters)",
+    "description": "Parameter file schema for the iac-bicep-cop-st mg-scope and sub-scope full-parameters test deployments.",
     "type": "object",
     "required": ["$schema", "contentVersion", "parameters"],
     "additionalProperties": false,
@@ -59,9 +59,9 @@
                                     "minLength": 3,
                                     "maxLength": 90
                                 },
-                                "copCaRgName": {
+                                "copStRgName": {
                                     "type": "string",
-                                    "description": "Resource group name for the COP Container App resources (alerts).",
+                                    "description": "Resource group name for the COP Storage Account resources (alerts).",
                                     "minLength": 3,
                                     "maxLength": 90
                                 },
@@ -85,6 +85,12 @@
                             "additionalProperties": false,
                             "properties": {
                                 "contributorUamiName": {
+                                    "type": "string",
+                                    "description": "Name of the User Assigned Managed Identity (UAMI) deployed by the foundation module.",
+                                    "minLength": 3,
+                                    "maxLength": 128
+                                },
+                                "monitoringUamiName": {
                                     "type": "string",
                                     "description": "Name of the User Assigned Managed Identity (UAMI) deployed by the foundation module.",
                                     "minLength": 3,
@@ -128,9 +134,9 @@
                         }
                     }
                 },
-                "copCaTags": {
+                "copStTags": {
                     "type": "object",
-                    "description": "Tags applied to all COP Container App resources.",
+                    "description": "Tags applied to all COP Storage Account resources.",
                     "required": ["value"],
                     "additionalProperties": false,
                     "properties": {
@@ -158,14 +164,6 @@
                                 "Owner": {
                                     "type": "string",
                                     "description": "Owner tag value."
-                                },
-                                "Country": {
-                                    "type": "string",
-                                    "description": "Country tag value."
-                                },
-                                "Description": {
-                                    "type": "string",
-                                    "description": "Description tag value."
                                 }
                             }
                         }

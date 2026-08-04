@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "ARM Template Parameters - iac-bicep-cop-ca (full-parameters)",
-    "description": "Parameter file schema for the iac-bicep-cop-ca mg-scope and sub-scope full-parameters test deployments.",
+    "title": "ARM Template Parameters - iac-bicep-cop-sb (full-parameters)",
+    "description": "Parameter file schema for the iac-bicep-cop-sb mg-scope and sub-scope full-parameters test deployments.",
     "type": "object",
     "required": ["$schema", "contentVersion", "parameters"],
     "additionalProperties": false,
@@ -59,9 +59,9 @@
                                     "minLength": 3,
                                     "maxLength": 90
                                 },
-                                "copCaRgName": {
+                                "copSbRgName": {
                                     "type": "string",
-                                    "description": "Resource group name for the COP Container App resources (alerts).",
+                                    "description": "Resource group name for the COP Service Bus resources (metrics DCR + alerts).",
                                     "minLength": 3,
                                     "maxLength": 90
                                 },
@@ -90,6 +90,12 @@
                                     "minLength": 3,
                                     "maxLength": 128
                                 },
+                                "monitoringUamiName": {
+                                    "type": "string",
+                                    "description": "Name of the User Assigned Managed Identity (UAMI) deployed by the foundation module.",
+                                    "minLength": 3,
+                                    "maxLength": 128
+                                },
                                 "logAnalyticsWorkspaceName": {
                                     "type": "string",
                                     "description": "Name of the Log Analytics Workspace deployed by the foundation module.",
@@ -112,7 +118,7 @@
                 },
                 "targetSubscriptionIds": {
                     "type": "object",
-                    "description": "Subscription IDs the data-collection policy is assigned to.",
+                    "description": "Subscription IDs the data-collection and DCR-association policies are assigned to.",
                     "required": ["value"],
                     "additionalProperties": false,
                     "properties": {
@@ -128,9 +134,9 @@
                         }
                     }
                 },
-                "copCaTags": {
+                "copSbTags": {
                     "type": "object",
-                    "description": "Tags applied to all COP Container App resources.",
+                    "description": "Tags applied to all COP Service Bus resources.",
                     "required": ["value"],
                     "additionalProperties": false,
                     "properties": {
@@ -158,14 +164,6 @@
                                 "Owner": {
                                     "type": "string",
                                     "description": "Owner tag value."
-                                },
-                                "Country": {
-                                    "type": "string",
-                                    "description": "Country tag value."
-                                },
-                                "Description": {
-                                    "type": "string",
-                                    "description": "Description tag value."
                                 }
                             }
                         }

@@ -122,6 +122,18 @@ When migrating a module's schema from its test folder to this repo:
 The following modules no longer have `schema.json` in their test folders — their schemas are live in this repo:
 
 - `iac-bicep-cop-cred` → `schema.cop-cred.json`
+- `iac-bicep-cop-agw` → `schema.cop-agw.json`
+- `iac-bicep-cop-apim` → `schema.cop-apim.json`
+- `iac-bicep-cop-app` → `schema.cop-app.json`
+- `iac-bicep-cop-ca` → `schema.cop-ca.json`
+- `iac-bicep-cop-cr` → `schema.cop-cr.json`
+- `iac-bicep-cop-cs` → `schema.cop-cs.json`
+- `iac-bicep-cop-fd` → `schema.cop-fd.json`
+- `iac-bicep-cop-lb` → `schema.cop-lb.json`
+- `iac-bicep-cop-sb` → `schema.cop-sb.json`
+- `iac-bicep-cop-sqldb` → `schema.cop-sqldb.json`
+- `iac-bicep-cop-st` → `schema.cop-st.json`
+- `iac-bicep-cop-vm` → `schema.cop-vm.json`
 - `iac-bicep-foundation` → `schema.foundation.json`
 - `iac-bicep-foundation-platform-aa` → `schema.foundation-platform-aa.json`
 - `iac-bicep-foundation-platform-ag` → `schema.foundation-platform-ag.json`
@@ -132,17 +144,4 @@ The following modules no longer have `schema.json` in their test folders — the
 
 ## Pending Migration
 
-The following modules still have local `schema.json` files in their test folders:
-
-- `iac-bicep-cop-agw`
-- `iac-bicep-cop-apim`
-- `iac-bicep-cop-app`
-- `iac-bicep-cop-ca`
-- `iac-bicep-cop-cr`
-- `iac-bicep-cop-cs`
-- `iac-bicep-cop-fd`
-- `iac-bicep-cop-lb`
-- `iac-bicep-cop-sb`
-- `iac-bicep-cop-sqldb`
-- `iac-bicep-cop-st`
-- `iac-bicep-cop-vm`
+All known `iac-bicep-cop-*` and `iac-bicep-foundation*` modules have been migrated. No modules currently have local `schema.json` files pending migration.
