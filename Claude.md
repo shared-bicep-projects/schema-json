@@ -82,6 +82,7 @@ Schema files in this repo are named after the module type:
 | `iac-bicep-cop-sqldb`                  | `schema.cop-sqldb.json`                    |
 | `iac-bicep-cop-st`                     | `schema.cop-st.json`                       |
 | `iac-bicep-cop-vm`                     | `schema.cop-vm.json`                       |
+| `iac-bicep-co`                         | `schema.co.json`                           |
 | `iac-bicep-foundation`                 | `schema.foundation.json`                   |
 | `iac-bicep-foundation-platform-aa`     | `schema.foundation-platform-aa.json`       |
 | `iac-bicep-foundation-platform-ag`     | `schema.foundation-platform-ag.json`       |
@@ -144,4 +145,6 @@ The following modules no longer have `schema.json` in their test folders — the
 
 ## Pending Migration
 
-All known `iac-bicep-cop-*` and `iac-bicep-foundation*` modules have been migrated. No modules currently have local `schema.json` files pending migration.
+- `iac-bicep-co` → `schema.co.json` has been created in this repo and validated against all 4 of the module's `test.parameters.json` files, but the module's local `schema.json` placeholders (under `test/mg-scope/` and `test/sub-scope/`, both `default/` and `full-parameters/`) have **not** been removed and the module's `test.parameters.json` files still reference `./schema.json` rather than the CDN URL. Steps 2–4 of the Migration Checklist are outstanding for this module — completing them requires editing the bicep-modules repo, which currently has other unrelated in-progress changes.
+
+All other known `iac-bicep-cop-*` and `iac-bicep-foundation*` modules have been fully migrated.

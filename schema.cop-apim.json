@@ -68,6 +68,12 @@
                                 "location": {
                                     "type": "string",
                                     "description": "Azure region for resource group deployments. Defaults to the deployment location if omitted."
+                                },
+                                "tagSeedPolicyDefinitionName": {
+                                    "type": "string",
+                                    "description": "Name of the Azure Policy definition used to seed missing tags on resources.",
+                                    "minLength": 1,
+                                    "maxLength": 64
                                 }
                             }
                         }
