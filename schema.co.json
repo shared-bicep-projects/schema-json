@@ -122,7 +122,7 @@
                         }
                     }
                 },
-                "copCredResources": {
+                "coResources": {
                     "type": "object",
                     "description": "Configuration for Cop-Credential-specific resources. Passed through unchanged to iac-bicep-cop-cred only; every other COP module ignores it.",
                     "required": ["value"],
@@ -207,7 +207,7 @@
                 },
                 "targetSubscriptionIds": {
                     "type": "object",
-                    "description": "Subscription IDs forwarded to every COP module's diagnostics / DCR-association policy assignments. Required at sub-scope; not used at mg-scope. Not used by iac-bicep-cop-cred, which scans copCredResources.kvSubscriptionIds instead.",
+                    "description": "Subscription IDs forwarded to every COP module's diagnostics / DCR-association policy assignments. Required at sub-scope; not used at mg-scope. Not used by iac-bicep-cop-cred, which scans coResources.kvSubscriptionIds instead.",
                     "required": ["value"],
                     "additionalProperties": false,
                     "properties": {
