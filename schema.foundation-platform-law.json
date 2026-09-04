@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "ARM Template Parameters - iac-bicep-foundation-platform-law (rg-scope)",
+  "title": "ARM Template Parameters - iac-bicep-foundation-platform-law",
   "type": "object",
   "required": ["$schema", "contentVersion", "parameters"],
   "properties": {
@@ -16,7 +16,7 @@
       "required": ["location"],
       "additionalProperties": false,
       "properties": {
-        "subscriptionGuid": {
+        "managementSubscriptionGuid": {
           "type": "object",
           "required": ["value"],
           "properties": {
@@ -26,13 +26,14 @@
             }
           }
         },
-        "resourceGroupName": {
+        "monitoringRgName": {
           "type": "object",
           "required": ["value"],
           "properties": {
             "value": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "maxLength": 90
             }
           }
         },
@@ -78,6 +79,18 @@
           }
         },
         "tags": {
+          "type": "object",
+          "required": ["value"],
+          "properties": {
+            "value": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "rgTags": {
           "type": "object",
           "required": ["value"],
           "properties": {

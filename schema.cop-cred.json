@@ -68,18 +68,6 @@
                                 "location": {
                                     "type": "string",
                                     "description": "Azure region for resource group deployments. Defaults to the deployment location if omitted."
-                                },
-                                "tagSeedPolicyDefinitionName": {
-                                    "type": "string",
-                                    "description": "Name of the Azure Policy definition used to seed missing tags on resources.",
-                                    "minLength": 1,
-                                    "maxLength": 64
-                                },
-                                "tagSeedManagementGroupId": {
-                                    "type": "string",
-                                    "description": "Management group ID at which the tag-seeding policy assignment is scoped.",
-                                    "minLength": 1,
-                                    "maxLength": 90
                                 }
                             }
                         }
@@ -271,22 +259,6 @@
                             }
                         }
                     }
-                },
-                "targetSubscriptionIds": {
-                    "type": "object",
-                    "description": "Subscription IDs",
-                    "properties": {
-                        "value": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "minLength": 36,
-                                "maxLength": 36,
-                                "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
-                            }
-                        }
-                    },
-                    "required": ["value"]
                 }
             }
         }

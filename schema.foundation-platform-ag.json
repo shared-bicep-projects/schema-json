@@ -14,9 +14,11 @@
         },
         "parameters": {
             "type": "object",
-            "required": [],
+            "required": [
+                "customerNavId"
+            ],
             "properties": {
-                "subscriptionGuId": {
+                "managementSubscriptionGuid": {
                     "type": "object",
                     "required": [
                         "value"
@@ -24,11 +26,11 @@
                     "properties": {
                         "value": {
                             "type": "string",
-                            "format": "uuid"
+                            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
                         }
                     }
                 },
-                "resourceGroupName": {
+                "monitoringRgName": {
                     "type": "object",
                     "required": [
                         "value"
@@ -88,6 +90,14 @@
                     }
                 },
                 "tags": {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "rgTags": {
                     "type": "object",
                     "properties": {
                         "value": {

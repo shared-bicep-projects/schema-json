@@ -63,11 +63,84 @@
                                     "type": "string",
                                     "description": "Azure region for resource group deployments. Defaults to the deployment location if omitted."
                                 },
-                                "tagSeedPolicyDefinitionName": {
+                                "identityRgTags": {
+                                    "type": "object",
+                                    "description": "Tags applied to the identity resource group and to the platform user-assigned managed identities.",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    }
+                                },
+                                "copAcsRgName": {
                                     "type": "string",
-                                    "description": "Name of the shared AutoOps tag-seed policy definition. At mg-scope, this module deploys the definition under this name; at sub-scope, every COP module resolves an already-deployed definition under this name. Defaults to 'policy-cop-tag-if-missing'.",
-                                    "minLength": 1,
-                                    "maxLength": 64
+                                    "description": "Resource group name override for the COP Communication Services module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copAgwRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Application Gateway module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copApimRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP API Management module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copAppRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP App Service module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copCaRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Container App module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copCrRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Container Registry module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copCredRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Credentials module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copFdRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Front Door module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copLbRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Load Balancer module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copSbnsRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Service Bus Namespace module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copSqldbRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP SQL Database module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copStRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Storage Account module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
                                 }
                             }
                         }
@@ -201,6 +274,37 @@
                                     "type": "string",
                                     "description": "Location of the Log search alert rule resources."
                                 }
+                            }
+                        }
+                    }
+                },
+                "policyAuthoringScope": {
+                    "type": "object",
+                    "description": "Management group holding the policy definitions. mg-scope deployments only.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "description": "Name of the management group where the policy definitions are created. Must be at or above every managedScopeSet entry; equal is legal. Defaults to the management group the deployment targets.",
+                            "minLength": 1,
+                            "maxLength": 90
+                        }
+                    }
+                },
+                "managedScopeSet": {
+                    "type": "object",
+                    "description": "Management groups receiving the policy assignments, one nested deployment per entry. mg-scope deployments only.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "array",
+                            "description": "Array of management group names. An empty array resolves to [policyAuthoringScope], which reproduces the pre-split single-scope behaviour.",
+                            "items": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 90
                             }
                         }
                     }

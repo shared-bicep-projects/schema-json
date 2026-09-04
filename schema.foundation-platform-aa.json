@@ -29,7 +29,7 @@
                         }
                     }
                 },
-                "subscriptionGuid": {
+                "managementSubscriptionGuid": {
                     "type": "object",
                     "required": [
                         "value"
@@ -41,7 +41,7 @@
                         }
                     }
                 },
-                "resourceGroupName": {
+                "monitoringRgName": {
                     "type": "object",
                     "required": [
                         "value"
@@ -61,7 +61,8 @@
                     "properties": {
                         "value": {
                             "type": "string",
-                            "minLength": 1
+                            "minLength": 6,
+                            "maxLength": 50
                         }
                     }
                 },
@@ -73,11 +74,22 @@
                     "properties": {
                         "value": {
                             "type": "string",
-                            "minLength": 1
+                            "enum": [
+                                "Basic",
+                                "Free"
+                            ]
                         }
                     }
                 },
                 "tags": {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "rgTags": {
                     "type": "object",
                     "properties": {
                         "value": {

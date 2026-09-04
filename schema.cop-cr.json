@@ -68,12 +68,6 @@
                                 "location": {
                                     "type": "string",
                                     "description": "Azure region for resource group deployments. Defaults to the deployment location if omitted."
-                                },
-                                "tagSeedPolicyDefinitionName": {
-                                    "type": "string",
-                                    "description": "Name of the Azure Policy definition used to seed missing tags on resources.",
-                                    "minLength": 1,
-                                    "maxLength": 64
                                 }
                             }
                         }
@@ -118,6 +112,37 @@
                                     "type": "string",
                                     "description": "Azure region used to resolve default names for foundation resources. Defaults to the deployment location if omitted."
                                 }
+                            }
+                        }
+                    }
+                },
+                "policyAuthoringScope": {
+                    "type": "object",
+                    "description": "Management group holding the policy definitions. mg-scope deployments only.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "description": "Name of the management group where the policy definitions are created. Must be at or above every managedScopeSet entry; equal is legal. Defaults to the management group the deployment targets.",
+                            "minLength": 1,
+                            "maxLength": 90
+                        }
+                    }
+                },
+                "managedScopeSet": {
+                    "type": "object",
+                    "description": "Management groups receiving the policy assignments, one nested deployment per entry. mg-scope deployments only.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "array",
+                            "description": "Array of management group names. An empty array resolves to [policyAuthoringScope], which reproduces the pre-split single-scope behaviour.",
+                            "items": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 90
                             }
                         }
                     }

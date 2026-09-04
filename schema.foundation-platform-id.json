@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Platform Identity",
-  "description": "Validates parameter files for the iac-bicep-foundation-platform-identity module.",
+  "description": "Validates parameter files for the iac-bicep-shared-platform-id module (mg-role-assignment, sub-role-assignment, sub-scope and rg-scope).",
   "type": "object",
-  "required": ["$schema", "contentVersion", "parameters"],
+  "required": ["$schema", "contentVersion"],
   "additionalProperties": false,
   "properties": {
     "$schema": {
@@ -25,7 +25,7 @@
           "properties": {
             "value": {
               "type": "string",
-              "description": "Azure region for UDMI resources (e.g. westeurope)"
+              "description": "Azure region for UAMI resources (e.g. westeurope)"
             }
           }
         },
@@ -48,7 +48,7 @@
           "properties": {
             "value": {
               "type": "string",
-              "description": "Resource Group name for platform UDMIs in the Identity subscription"
+              "description": "Resource Group name for platform UAMIs in the Identity subscription"
             }
           }
         },
@@ -87,7 +87,21 @@
           "properties": {
             "value": {
               "type": "object",
-              "description": "Tags applied to all UDMI resources",
+              "description": "Tags applied to all UAMI resources",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "rgTags": {
+          "type": "object",
+          "required": ["value"],
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "type": "object",
+              "description": "Tags applied to the identity resource group",
               "additionalProperties": {
                 "type": "string"
               }
