@@ -84,12 +84,6 @@
                             "description": "Object containing references to existing foundation resources.",
                             "additionalProperties": false,
                             "properties": {
-                                "contributorUamiName": {
-                                    "type": "string",
-                                    "description": "Name of the User Assigned Managed Identity (UAMI) deployed by the foundation module.",
-                                    "minLength": 3,
-                                    "maxLength": 128
-                                },
                                 "monitoringUamiName": {
                                     "type": "string",
                                     "description": "Name of the User Assigned Managed Identity (UAMI) deployed by the foundation module.",

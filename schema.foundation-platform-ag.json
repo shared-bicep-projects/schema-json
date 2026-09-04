@@ -15,7 +15,8 @@
         "parameters": {
             "type": "object",
             "required": [
-                "customerNavId"
+                "webhookBaseUri",
+                "functionCode"
             ],
             "properties": {
                 "managementSubscriptionGuid": {
@@ -77,17 +78,25 @@
                     "type": "object",
                     "properties": {
                         "value": {
-                            "type": "string"
+                            "type": "string",
+                            "minLength": 1
                         }
-                    }
+                    },
+                    "required": [
+                        "value"
+                    ]
                 },
                 "functionCode": {
                     "type": "object",
                     "properties": {
                         "value": {
-                            "type": "string"
+                            "type": "string",
+                            "minLength": 1
                         }
-                    }
+                    },
+                    "required": [
+                        "value"
+                    ]
                 },
                 "tags": {
                     "type": "object",
