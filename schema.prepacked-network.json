@@ -1,0 +1,185 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Prepacked Hub and Spoke Connectivity Deployment Parameters",
+    "description": "ARM parameter file schema for the iac-bicep-prepacked-connectivity module",
+    "type": "object",
+    "required": [
+        "$schema",
+        "contentVersion",
+        "parameters"
+    ],
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "contentVersion": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "parameters": {
+            "type": "object",
+            "required": [
+                "companyPrefix",
+                "connectivity"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "companyPrefix": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "description": "Prefix for all deployed resource names. Should be 2-5 characters to allow for resource type suffixes while staying within Azure limits.",
+                            "minLength": 2,
+                            "maxLength": 5
+                        }
+                    }
+                },
+                "connectivity": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "required": [
+                                "subscription"
+                            ],
+                            "properties": {
+                                "deployBasicFW": {
+                                    "type": "boolean",
+                                    "description": "Flag to deploy basic firewall.",
+                                    "default": true
+                                },
+                                "subscription": {
+                                    "$ref": "#/$defs/subscriptionGuid"
+                                },
+                                "tags": {
+                                    "type": "object",
+                                    "description": "Optional tags dictionary.",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "default": {}
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    }
+                },
+                "identity": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "$ref": "#/$defs/scopeValue"
+                        }
+                    }
+                },
+                "management": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "$ref": "#/$defs/scopeValue"
+                        }
+                    }
+                },
+                "avd": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "$ref": "#/$defs/scopeValue"
+                        }
+                    }
+                },
+                "prod": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "$ref": "#/$defs/scopeValue"
+                        }
+                    }
+                },
+                "test": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "$ref": "#/$defs/scopeValue"
+                        }
+                    }
+                },
+                "tags": {
+                    "type": "object",
+                    "required": [
+                        "value"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "description": "Optional tags dictionary to apply to all deployed resources. Individual scope tags will override these in case of conflict.",
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "default": {}
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "$defs": {
+        "subscriptionGuid": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "subscriptionValue": {
+            "anyOf": [
+                {
+                    "type": "string",
+                    "const": ""
+                },
+                {
+                    "$ref": "#/$defs/subscriptionGuid"
+                }
+            ]
+        },
+        "scopeValue": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "subscription"
+            ],
+            "properties": {
+                "subscription": {
+                    "$ref": "#/$defs/subscriptionValue"
+                },
+                "tags": {
+                    "type": "object",
+                    "description": "Optional tags dictionary.",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "default": {}
+                }
+            }
+        }
+    }
+}

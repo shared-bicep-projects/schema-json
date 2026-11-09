@@ -1,0 +1,975 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ARM Template Parameters - COP Orchestrator",
+    "description": "Parameter file schema for the COP orchestrator mg-scope and sub-scope full-parameters test deployments.",
+    "type": "object",
+    "required": ["$schema", "contentVersion", "parameters"],
+    "additionalProperties": false,
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "description": "The URI of the JSON schema for this parameters file."
+        },
+        "contentVersion": {
+            "type": "string",
+            "description": "Version of the content in major.minor.build.revision format.",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "parameters": {
+            "type": "object",
+            "description": "Deployment parameter values.",
+            "required": ["commonParameters"],
+            "additionalProperties": false,
+            "properties": {
+                "commonParameters": {
+                    "type": "object",
+                    "description": "Common subscription identifiers required by the module. Forwarded, as-is, to every COP module orchestrated by this module.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "description": "Object containing shared subscription GUIDs and optional resource group names.",
+                            "required": ["identitySubscriptionGuid", "managementSubscriptionGuid"],
+                            "additionalProperties": false,
+                            "properties": {
+                                "identitySubscriptionGuid": {
+                                    "type": "string",
+                                    "description": "Subscription GUID for the identity subscription.",
+                                    "minLength": 36,
+                                    "maxLength": 36,
+                                    "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                                },
+                                "managementSubscriptionGuid": {
+                                    "type": "string",
+                                    "description": "Subscription GUID for the management subscription.",
+                                    "minLength": 36,
+                                    "maxLength": 36,
+                                    "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                                },
+                                "identityRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name for the identity subscription.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "monitoringRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name for the foundation monitoring resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "location": {
+                                    "type": "string",
+                                    "description": "Azure region for resource group deployments. Defaults to the deployment location if omitted."
+                                },
+                                "identityRgTags": {
+                                    "type": "object",
+                                    "description": "Tags applied to the identity resource group and to the platform user-assigned managed identities.",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    }
+                                },
+                                "copAcsRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Communication Services module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copAfwRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the Azure Firewall COP. Defaults to the module's standard name.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copAgwRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Application Gateway module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copApimRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP API Management module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copAppRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP App Service module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copAvdRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the Azure Virtual Desktop COP. Defaults to the module's standard name.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copCaRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Container App module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copCrRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Container Registry module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copCredRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Credentials module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copFdRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Front Door module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copLbRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Load Balancer module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copLogicRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the Logic App COP. Defaults to the module's standard name.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copSbnsRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Service Bus Namespace module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copSqldbRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP SQL Database module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copSqlvmRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the SQL Virtual Machine COP. Defaults to the module's standard name.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copStRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the COP Storage Account module resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "copVmRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name override for the Virtual Machine COP. Defaults to the module's standard name.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                }
+                            }
+                        }
+                    }
+                },
+                "foundationResources": {
+                    "type": "object",
+                    "description": "Names and location of pre-existing foundation resources. Forwarded, as-is, to every COP module orchestrated by this module.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "description": "Object containing references to existing foundation resources.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "contributorUamiName": {
+                                    "type": "string",
+                                    "description": "Name of the User Assigned Managed Identity (UAMI) deployed by the foundation module.",
+                                    "minLength": 3,
+                                    "maxLength": 128
+                                },
+                                "monitoringUamiName": {
+                                    "type": "string",
+                                    "description": "Name of the User Assigned Managed Identity (UAMI) deployed by the foundation module.",
+                                    "minLength": 3,
+                                    "maxLength": 128
+                                },
+                                "monitoringIaasUamiName": {
+                                    "type": "string",
+                                    "description": "Name of the IaaS monitoring User Assigned Managed Identity, used by the Virtual Machine COP and the SQL Virtual Machine COP. Defaults to the module's standard name.",
+                                    "minLength": 3,
+                                    "maxLength": 128
+                                },
+                                "logAnalyticsWorkspaceName": {
+                                    "type": "string",
+                                    "description": "Name of the Log Analytics Workspace deployed by the foundation module.",
+                                    "minLength": 4,
+                                    "maxLength": 63
+                                },
+                                "automationAccountName": {
+                                    "type": "string",
+                                    "description": "Name of the Automation Account deployed by the foundation module. Used by the Credentials COP only.",
+                                    "minLength": 6,
+                                    "maxLength": 50
+                                },
+                                "automationAccountLocation": {
+                                    "type": "string",
+                                    "description": "Region of the shared platform Automation Account. Defaults to foundationResources.location."
+                                },
+                                "automationAccountSkuName": {
+                                    "type": "string",
+                                    "description": "SKU of the shared platform Automation Account. Defaults to 'Basic'.",
+                                    "enum": ["Free", "Basic"]
+                                },
+                                "actionGroupName": {
+                                    "type": "string",
+                                    "description": "Name of the Action Group deployed by the foundation module.",
+                                    "minLength": 1,
+                                    "maxLength": 260
+                                },
+                                "location": {
+                                    "type": "string",
+                                    "description": "Azure region used to resolve default names for foundation resources. Defaults to the deployment location if omitted."
+                                }
+                            }
+                        }
+                    }
+                },
+                "coResources": {
+                    "type": "object",
+                    "description": "Per-COP settings, keyed by COP abbreviation. cred / vm / sqlvm carry that COP's own resources object; avd carries its extended-layer settings; every PaaS COP key and activityLog read enableRemediation. An absent key keeps the COP module's own default.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "description": "Object containing per-COP settings.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "acs": {
+                                    "type": "object",
+                                    "description": "Communication Service COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "activityLog": {
+                                    "type": "object",
+                                    "description": "Activity Log policy assignment settings. mg-scope only.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), the Activity Log assignment is paired with its remediation task."
+                                        }
+                                    }
+                                },
+                                "afw": {
+                                    "type": "object",
+                                    "description": "Azure Firewall COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "agw": {
+                                    "type": "object",
+                                    "description": "Application Gateway COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "apim": {
+                                    "type": "object",
+                                    "description": "API Management COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "app": {
+                                    "type": "object",
+                                    "description": "Web App COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "avd": {
+                                    "type": "object",
+                                    "description": "Azure Virtual Desktop COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "deployExtendedLayer": {
+                                            "type": "boolean",
+                                            "description": "Deploy the Azure Virtual Desktop COP Extended-layer artifacts. Defaults to true."
+                                        },
+                                        "fallbackExpectedHosts": {
+                                            "type": "integer",
+                                            "description": "Fallback expected available session hosts for pools with no Autoscale evaluation record. Defaults to 0.",
+                                            "minimum": 0
+                                        },
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "ca": {
+                                    "type": "object",
+                                    "description": "Container App COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "cr": {
+                                    "type": "object",
+                                    "description": "Container Registry COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "cred": {
+                                    "type": "object",
+                                    "description": "Credentials COP copCredResources, passed through as-is. runbookContentUri and runbookContentHash are required while the Credentials COP is enabled.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "dceLocation": {
+                                            "type": "string",
+                                            "description": "Location of the Data Collection Endpoint. Defaults to the resource group location."
+                                        },
+                                        "dcrAppRegLocation": {
+                                            "type": "string",
+                                            "description": "Location of the Data Collection Rule for the app registration credentials table. Defaults to the resource group location."
+                                        },
+                                        "dcrKvLocation": {
+                                            "type": "string",
+                                            "description": "Location of the Data Collection Rule for the Key Vault credentials table. Defaults to the resource group location."
+                                        },
+                                        "lawTableRetentionDays": {
+                                            "type": "integer",
+                                            "description": "Analytics table retention in days, between 4 and 730. Defaults to 90.",
+                                            "minimum": 4,
+                                            "maximum": 730
+                                        },
+                                        "lawTableTotalRetentionDays": {
+                                            "type": "integer",
+                                            "description": "Total retention in days, including archive, for the credential inventory custom tables, between 4 and 4383. Defaults to 90.",
+                                            "minimum": 4,
+                                            "maximum": 4383
+                                        },
+                                        "targetSubscriptionIds": {
+                                            "type": "array",
+                                            "description": "Subscription IDs to scan for Key Vaults. An empty array (the default) or a single '*' entry auto-discovers every subscription accessible to the monitoring identity at runtime.",
+                                            "items": {
+                                                "type": "string",
+                                                "pattern": "^(\\*|[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$"
+                                            }
+                                        },
+                                        "kvSubscriptionIds": {
+                                            "type": "array",
+                                            "description": "Deprecated alias of targetSubscriptionIds, still honoured for existing parameter files. targetSubscriptionIds wins when both are set.",
+                                            "items": {
+                                                "type": "string",
+                                                "pattern": "^(\\*|[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$"
+                                            }
+                                        },
+                                        "collectionScheduleHour": {
+                                            "type": "integer",
+                                            "description": "UTC hour at which the daily collection runbook is scheduled. 0 = midnight UTC.",
+                                            "minimum": 0,
+                                            "maximum": 23
+                                        },
+                                        "logAlertLocation": {
+                                            "type": "string",
+                                            "description": "Location of the Log search alert rule resources. Defaults to the resource group location."
+                                        },
+                                        "runbookContentUri": {
+                                            "type": "string",
+                                            "description": "URI the credential collector runbook content is published from (raw git or storage blob URL). Required for deployment; no default.",
+                                            "minLength": 1
+                                        },
+                                        "runbookContentHash": {
+                                            "type": "string",
+                                            "description": "SHA256 of the runbook content exactly as published at runbookContentUri, as uppercase hex. Required for deployment; no default.",
+                                            "pattern": "^[0-9A-F]{64}$"
+                                        }
+                                    }
+                                },
+                                "fd": {
+                                    "type": "object",
+                                    "description": "Front Door COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "lb": {
+                                    "type": "object",
+                                    "description": "Load Balancer COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "logic": {
+                                    "type": "object",
+                                    "description": "Logic App COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "sbns": {
+                                    "type": "object",
+                                    "description": "Service Bus COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "sqldb": {
+                                    "type": "object",
+                                    "description": "SQL Database COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "sqlvm": {
+                                    "type": "object",
+                                    "description": "SQL Virtual Machine COP copSqlvmResources, passed through to the mg-scope entry point. policyAuthoringScope and managedScopeSet are always set from this template's own parameters, so they are not accepted here. runbookContentUri and runbookContentHash are required while the COP and its runbook are enabled.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "targetSubscriptionIds": {
+                                            "type": "array",
+                                            "description": "Subscriptions the policy definitions and assignments are deployed to. Defaults to []. sub-scope only.",
+                                            "items": {
+                                                "type": "string",
+                                                "minLength": 36,
+                                                "maxLength": 36,
+                                                "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                                            }
+                                        },
+                                        "deployHostTags": {
+                                            "type": "boolean",
+                                            "description": "Deploy the SQL host tagging policy. Defaults to true. mg-scope and sub-scope."
+                                        },
+                                        "deployIaasAutomationAudit": {
+                                            "type": "boolean",
+                                            "description": "Deploy the SQL IaaS Agent automation audit policy. Defaults to true. mg-scope and sub-scope."
+                                        },
+                                        "deployDataCollection": {
+                                            "type": "boolean",
+                                            "description": "Deploy the SQL data collection rule and its association policy. Defaults to true. mg-scope and sub-scope."
+                                        },
+                                        "deployAlerts": {
+                                            "type": "boolean",
+                                            "description": "Deploy the SQL Virtual Machine COP alert rules. Defaults to true. mg-scope and sub-scope."
+                                        },
+                                        "alertsEnabled": {
+                                            "type": "boolean",
+                                            "description": "Enable the deployed alert rules. Defaults to true. mg-scope and sub-scope."
+                                        },
+                                        "tempdbLogUsedPercent": {
+                                            "type": "integer",
+                                            "description": "Percent of the tempdb log in use above which the tempdb capacity alert fires. Defaults to 90. mg-scope and sub-scope.",
+                                            "minimum": 1,
+                                            "maximum": 100
+                                        },
+                                        "deployBackupRunbook": {
+                                            "type": "boolean",
+                                            "description": "Deploy the SQL backup protection runbook. When true, runbookContentUri and runbookContentHash are required. Defaults to true. mg-scope and sub-scope."
+                                        },
+                                        "runbookContentUri": {
+                                            "type": "string",
+                                            "description": "URI the backup protection runbook content is published from. No default; required when deployBackupRunbook is true. mg-scope and sub-scope.",
+                                            "minLength": 1
+                                        },
+                                        "runbookContentHash": {
+                                            "type": "string",
+                                            "description": "SHA256 of the runbook content exactly as published at runbookContentUri, as uppercase hex. No default; required when deployBackupRunbook is true. mg-scope and sub-scope.",
+                                            "pattern": "^[0-9A-F]{64}$"
+                                        },
+                                        "policyAssignmentLocation": {
+                                            "type": "string",
+                                            "description": "Location of the policy assignments (and their managed identities). Defaults to the deployment location. mg-scope and sub-scope."
+                                        },
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), deploys remediation tasks for already-existing non-compliant resources (DeployIfNotExists assignments only). mg-scope and sub-scope."
+                                        },
+                                        "remediationDiscoveryMode": {
+                                            "type": "string",
+                                            "description": "Resource discovery mode for the remediation tasks. Defaults to 'ReEvaluateCompliance'. sub-scope only (management group scope does not support ReEvaluateCompliance).",
+                                            "enum": ["ExistingNonCompliant", "ReEvaluateCompliance"]
+                                        },
+                                        "regions": {
+                                            "type": "array",
+                                            "description": "Regions that need a SQL backup vault in this subscription. Required by the backup entry point.",
+                                            "items": {
+                                                "type": "object",
+                                                "required": ["location", "geoCode", "timeZone"],
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "location": {
+                                                        "type": "string",
+                                                        "description": "Azure region, e.g. 'westeurope'."
+                                                    },
+                                                    "geoCode": {
+                                                        "type": "string",
+                                                        "description": "Azure Backup geo-code for the region, e.g. 'we'.",
+                                                        "minLength": 1
+                                                    },
+                                                    "timeZone": {
+                                                        "type": "string",
+                                                        "description": "Windows time zone ID the backup schedule is expressed in, e.g. 'W. Europe Standard Time'.",
+                                                        "minLength": 1
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "scheduleTime": {
+                                            "type": "string",
+                                            "description": "Full and differential backup time, local to each region's time zone, as HH:mm. Defaults to '19:30'. backup only.",
+                                            "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+                                        },
+                                        "logFrequencyMinutes": {
+                                            "type": "integer",
+                                            "description": "Log backup frequency in minutes. Defaults to 60. backup only.",
+                                            "enum": [15, 30, 60, 120, 240, 480, 720, 1440]
+                                        },
+                                        "tiers": {
+                                            "type": "object",
+                                            "description": "Retention per backup tier. Defaults: short 1 week full / 7 days differential / 7 days log; standard 5 / 31 / 14; long 5 / 31 / 14 + 12 monthly. backup only.",
+                                            "required": ["short", "standard", "long"],
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "short": {
+                                                    "$ref": "#/definitions/sqlvmBackupTier"
+                                                },
+                                                "standard": {
+                                                    "$ref": "#/definitions/sqlvmBackupTier"
+                                                },
+                                                "long": {
+                                                    "$ref": "#/definitions/sqlvmBackupTier"
+                                                }
+                                            }
+                                        },
+                                        "vaultRedundancy": {
+                                            "type": "string",
+                                            "description": "Storage redundancy of the SQL backup vaults. Defaults to 'LocallyRedundant'. backup only.",
+                                            "enum": ["LocallyRedundant", "GeoRedundant", "ZoneRedundant"]
+                                        },
+                                        "logAnalyticsWorkspaceResourceId": {
+                                            "type": "string",
+                                            "description": "Resource ID of the Log Analytics workspace the vaults send backup diagnostics to. Overrides the ID built from managementSubscriptionGuid, monitoringRgName and logAnalyticsWorkspaceName. backup only.",
+                                            "pattern": "^/subscriptions/[^/]+/resourceGroups/[^/]+/providers/Microsoft\\.OperationalInsights/workspaces/[^/]+$"
+                                        }
+                                    }
+                                },
+                                "st": {
+                                    "type": "object",
+                                    "description": "Storage Account COP settings.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), every policy assignment of this COP is paired with its remediation task. false deploys the assignments without the task."
+                                        }
+                                    }
+                                },
+                                "vm": {
+                                    "type": "object",
+                                    "description": "Virtual Machine COP copVmResources, passed through to the mg-scope entry point. policyAuthoringScope and managedScopeSet are always set from this template's own parameters, so they are not accepted here. runbookContentUri and runbookContentHash are required while the COP and its runbook are enabled.",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "dataCollectionRuleName": {
+                                            "type": "string",
+                                            "description": "Name of the Change Tracking Data Collection Rule. Defaults to the module's standard name. mg-scope and sub-scope.",
+                                            "minLength": 1,
+                                            "maxLength": 64
+                                        },
+                                        "deployGuestConfiguration": {
+                                            "type": "boolean",
+                                            "description": "Deploy the Guest Configuration prerequisites. Defaults to true. mg-scope only."
+                                        },
+                                        "deployAgents": {
+                                            "type": "boolean",
+                                            "description": "MACHINE-CHANGING. Deploy the guest agents (AMA, Change Tracking extension and DCR association). Defaults to false. mg-scope only."
+                                        },
+                                        "deployMachineConfigEngine": {
+                                            "type": "boolean",
+                                            "description": "Deploy the machine configuration engine policies. Defaults to true. mg-scope only."
+                                        },
+                                        "deployPerfDataCollection": {
+                                            "type": "boolean",
+                                            "description": "Deploy the performance data collection rule. Defaults to true. mg-scope only."
+                                        },
+                                        "deployAlerts": {
+                                            "type": "boolean",
+                                            "description": "Deploy the Virtual Machine COP alert rules. Defaults to true. mg-scope only."
+                                        },
+                                        "deployBackupPolicy": {
+                                            "type": "boolean",
+                                            "description": "Deploy the iaasvm backup policies. The vaults come from the backup entry point, which must run first. Defaults to true. mg-scope only."
+                                        },
+                                        "backupGeoCodes": {
+                                            "type": "object",
+                                            "description": "Region -> Azure Backup geo-code map used to resolve vault names, e.g. { \"westeurope\": \"we\" }. Must use the same geo-codes as regions[].geoCode. Defaults to every region in the shared location map. mg-scope only.",
+                                            "additionalProperties": {
+                                                "type": "string",
+                                                "minLength": 1
+                                            }
+                                        },
+                                        "deployPatching": {
+                                            "type": "boolean",
+                                            "description": "MACHINE-CHANGING. Set Customer Managed Schedules on enrolled VMs that have a patch window. One-way. Defaults to true. mg-scope only."
+                                        },
+                                        "deployPatchAssessment": {
+                                            "type": "boolean",
+                                            "description": "Deploy periodic assessment of missing updates. Defaults to true. mg-scope only."
+                                        },
+                                        "deployUpdateSource": {
+                                            "type": "boolean",
+                                            "description": "MACHINE-CHANGING, REMOVES SOFTWARE. Set the Windows update source and remove SCCM/WSUS once. Defaults to true. mg-scope only."
+                                        },
+                                        "deployPatchHistory": {
+                                            "type": "boolean",
+                                            "description": "Deploy the patch-history collector runbook. When true, runbookContentUri and runbookContentHash are required. Defaults to true. mg-scope only."
+                                        },
+                                        "runbookContentUri": {
+                                            "type": "string",
+                                            "description": "URI the patch-history collector runbook content is published from. No default; required when deployPatchHistory is true. mg-scope only.",
+                                            "minLength": 1
+                                        },
+                                        "runbookContentHash": {
+                                            "type": "string",
+                                            "description": "SHA256 of the runbook content exactly as published at runbookContentUri, as uppercase hex. No default; required when deployPatchHistory is true. mg-scope only.",
+                                            "pattern": "^[0-9A-F]{64}$"
+                                        },
+                                        "alertSettings": {
+                                            "type": "object",
+                                            "description": "Tunables for the alert rules. All keys optional. mg-scope only.",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "enabled": {
+                                                    "type": "boolean",
+                                                    "description": "Enable the alert rules. Defaults to true."
+                                                },
+                                                "restorePointStaleHours": {
+                                                    "type": "integer",
+                                                    "description": "Hours after which the latest restore point counts as stale. Defaults to 36.",
+                                                    "minimum": 1
+                                                },
+                                                "overduePendingDays": {
+                                                    "type": "integer",
+                                                    "description": "Days after which a pending Critical or Security update counts as overdue, between 1 and 60. Defaults to 35.",
+                                                    "minimum": 1,
+                                                    "maximum": 60
+                                                },
+                                                "tierPolicyWarningThreshold": {
+                                                    "type": "integer",
+                                                    "description": "VMs per backup tier policy at which the capacity finding is raised, at most 100. Defaults to 80.",
+                                                    "minimum": 1,
+                                                    "maximum": 100
+                                                }
+                                            }
+                                        },
+                                        "policyAssignmentLocation": {
+                                            "type": "string",
+                                            "description": "Location of the policy assignments (and their managed identities). Defaults to the deployment location. mg-scope only."
+                                        },
+                                        "enableRemediation": {
+                                            "type": "boolean",
+                                            "description": "When true (the default), deploys remediation tasks for already-existing non-compliant resources, for every DeployIfNotExists assignment. mg-scope only."
+                                        },
+                                        "regions": {
+                                            "type": "array",
+                                            "description": "Regions that need an iaasvm backup vault in this subscription. Required by the backup entry point.",
+                                            "items": {
+                                                "type": "object",
+                                                "required": ["location", "geoCode", "timeZone"],
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "location": {
+                                                        "type": "string",
+                                                        "description": "Azure region, e.g. 'westeurope'."
+                                                    },
+                                                    "geoCode": {
+                                                        "type": "string",
+                                                        "description": "Azure Backup geo-code for the region, e.g. 'we'.",
+                                                        "minLength": 1
+                                                    },
+                                                    "timeZone": {
+                                                        "type": "string",
+                                                        "description": "Windows time zone ID the backup schedule is expressed in, e.g. 'W. Europe Standard Time'.",
+                                                        "minLength": 1
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "scheduleTime": {
+                                            "type": "string",
+                                            "description": "Daily backup time, local to each region's time zone, as HH:mm. Defaults to '19:30'. backup only.",
+                                            "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+                                        },
+                                        "instantRestoreDays": {
+                                            "type": "integer",
+                                            "description": "Instant-restore snapshot retention in days, between 1 and 30. Defaults to 2. backup only.",
+                                            "minimum": 1,
+                                            "maximum": 30
+                                        },
+                                        "tiers": {
+                                            "type": "object",
+                                            "description": "Retention per backup tier. Defaults: short 7 daily, standard 31 daily, long 31 daily + 12 monthly. backup only.",
+                                            "required": ["short", "standard", "long"],
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "short": {
+                                                    "$ref": "#/definitions/vmBackupTier"
+                                                },
+                                                "standard": {
+                                                    "$ref": "#/definitions/vmBackupTier"
+                                                },
+                                                "long": {
+                                                    "$ref": "#/definitions/vmBackupTier"
+                                                }
+                                            }
+                                        },
+                                        "logAnalyticsWorkspaceResourceId": {
+                                            "type": "string",
+                                            "description": "Resource ID of the Log Analytics workspace the vaults send backup diagnostics to. Overrides the ID built from managementSubscriptionGuid, monitoringRgName and logAnalyticsWorkspaceName. backup only.",
+                                            "pattern": "^/subscriptions/[^/]+/resourceGroups/[^/]+/providers/Microsoft\\.OperationalInsights/workspaces/[^/]+$"
+                                        },
+                                        "patchWindows": {
+                                            "type": "array",
+                                            "description": "Patch window tag values for this customer, one maintenance configuration each. Required by the updates entry point.",
+                                            "items": {
+                                                "type": "string",
+                                                "minLength": 1
+                                            }
+                                        },
+                                        "avDefinitionWindows": {
+                                            "type": "array",
+                                            "description": "AV-definition windows: one entry per time zone, with the regions of the customer's VMs that resolve to it. Defaults to []. updates only.",
+                                            "items": {
+                                                "type": "object",
+                                                "required": ["timeZoneSlug", "locations"],
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "timeZoneSlug": {
+                                                        "type": "string",
+                                                        "description": "Time zone slug.",
+                                                        "minLength": 1
+                                                    },
+                                                    "locations": {
+                                                        "type": "array",
+                                                        "description": "Azure regions that resolve to this time zone.",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "minLength": 1
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "scopeSubscriptionIds": {
+                                            "type": "array",
+                                            "description": "Subscriptions holding enrolled VMs; each gets a dynamic scope per configuration. Required by the updates entry point.",
+                                            "items": {
+                                                "type": "string",
+                                                "minLength": 36,
+                                                "maxLength": 36,
+                                                "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                                            }
+                                        },
+                                        "startDate": {
+                                            "type": "string",
+                                            "description": "Date the maintenance schedules start, yyyy-MM-dd. Store the first deployment's date and pass it on every rerun. updates only.",
+                                            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "policyAuthoringScope": {
+                    "type": "object",
+                    "description": "Management group holding the policy definitions. mg-scope deployments only.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "description": "Name of the management group where the policy definitions are created. Must be at or above every managedScopeSet entry; equal is legal. Defaults to the management group the deployment targets.",
+                            "minLength": 1,
+                            "maxLength": 90
+                        }
+                    }
+                },
+                "managedScopeSet": {
+                    "type": "object",
+                    "description": "Management groups receiving the policy assignments, one nested deployment per entry. mg-scope deployments only.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "array",
+                            "description": "Array of management group names. An empty array resolves to [policyAuthoringScope], which reproduces the pre-split single-scope behaviour.",
+                            "items": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 90
+                            }
+                        }
+                    }
+                },
+                "targetSubscriptionIds": {
+                    "type": "object",
+                    "description": "Subscription IDs forwarded to every COP module's diagnostics / DCR-association policy assignments. Required at sub-scope; not used at mg-scope. Not used by the Credentials COP, which uses coResources.cred.targetSubscriptionIds instead.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "array",
+                            "description": "Array of subscription GUIDs.",
+                            "items": {
+                                "type": "string",
+                                "minLength": 36,
+                                "maxLength": 36,
+                                "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                            }
+                        }
+                    }
+                },
+                "copToggles": {
+                    "type": "object",
+                    "description": "Per-COP deployment toggles. A key set to false skips that COP; an absent key defaults to true, so an empty object deploys all seventeen, including vm and sqlvm.",
+                    "required": ["value"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "description": "Map of COP abbreviation to deploy flag.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "acs": { "type": "boolean", "description": "Deploy the Communication Service COP. Defaults to true." },
+                                "afw": { "type": "boolean", "description": "Deploy the Azure Firewall COP. Defaults to true." },
+                                "agw": { "type": "boolean", "description": "Deploy the Application Gateway COP. Defaults to true." },
+                                "apim": { "type": "boolean", "description": "Deploy the API Management COP. Defaults to true." },
+                                "app": { "type": "boolean", "description": "Deploy the Web App COP. Defaults to true." },
+                                "avd": { "type": "boolean", "description": "Deploy the Azure Virtual Desktop COP. Defaults to true." },
+                                "ca": { "type": "boolean", "description": "Deploy the Container App COP. Defaults to true." },
+                                "cr": { "type": "boolean", "description": "Deploy the Container Registry COP. Defaults to true." },
+                                "cred": { "type": "boolean", "description": "Deploy the Credentials COP. Defaults to true." },
+                                "fd": { "type": "boolean", "description": "Deploy the Front Door COP. Defaults to true." },
+                                "lb": { "type": "boolean", "description": "Deploy the Load Balancer COP. Defaults to true." },
+                                "logic": { "type": "boolean", "description": "Deploy the Logic App COP. Defaults to true." },
+                                "sbns": { "type": "boolean", "description": "Deploy the Service Bus COP. Defaults to true." },
+                                "sqldb": { "type": "boolean", "description": "Deploy the SQL Database COP. Defaults to true." },
+                                "st": { "type": "boolean", "description": "Deploy the Storage Account COP. Defaults to true." },
+                                "vm": { "type": "boolean", "description": "Deploy the Virtual Machine COP. Defaults to true. The Virtual Machine COP changes machines (patch mode, SCCM/WSUS removal); set false to keep it out." },
+                                "sqlvm": { "type": "boolean", "description": "Deploy the SQL Virtual Machine COP. Defaults to true. Requires vm." }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "vmBackupTier": {
+            "type": "object",
+            "description": "Retention for one backup tier.",
+            "required": ["dailyDays", "monthlyMonths"],
+            "additionalProperties": false,
+            "properties": {
+                "dailyDays": {
+                    "type": "integer",
+                    "description": "Daily recovery point retention in days.",
+                    "minimum": 1
+                },
+                "monthlyMonths": {
+                    "type": "integer",
+                    "description": "Monthly recovery point retention in months. 0 disables monthly retention.",
+                    "minimum": 0
+                }
+            }
+        },
+        "sqlvmBackupTier": {
+            "type": "object",
+            "description": "Retention for one SQL backup tier.",
+            "required": ["fullWeeks", "differentialDays", "logDays", "monthlyMonths"],
+            "additionalProperties": false,
+            "properties": {
+                "fullWeeks": {
+                    "type": "integer",
+                    "description": "Weekly full backup retention in weeks.",
+                    "minimum": 1
+                },
+                "differentialDays": {
+                    "type": "integer",
+                    "description": "Differential backup retention in days.",
+                    "minimum": 1
+                },
+                "logDays": {
+                    "type": "integer",
+                    "description": "Log backup retention in days.",
+                    "minimum": 1
+                },
+                "monthlyMonths": {
+                    "type": "integer",
+                    "description": "Monthly full backup retention in months. 0 when the tier keeps no monthly full.",
+                    "minimum": 0
+                }
+            }
+        }
+    }
+}

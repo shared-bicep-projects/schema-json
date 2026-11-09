@@ -1,0 +1,253 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ARM Template Parameters - COP Azure Firewall",
+    "description": "Parameter file schema for the Azure Firewall COP mg-scope and sub-scope test deployments.",
+    "type": "object",
+    "required": [
+        "$schema",
+        "contentVersion",
+        "parameters"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "description": "The URI of the JSON schema for this parameters file."
+        },
+        "contentVersion": {
+            "type": "string",
+            "description": "Version of the content in major.minor.build.revision format.",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "parameters": {
+            "type": "object",
+            "description": "Deployment parameter values.",
+            "required": [
+                "commonParameters"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "commonParameters": {
+                    "type": "object",
+                    "description": "Common subscription identifiers required by the module.",
+                    "required": [
+                        "value"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "description": "Object containing shared subscription GUIDs and optional resource group names.",
+                            "required": [
+                                "identitySubscriptionGuid",
+                                "managementSubscriptionGuid"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "identitySubscriptionGuid": {
+                                    "type": "string",
+                                    "description": "Subscription GUID for the identity subscription.",
+                                    "minLength": 36,
+                                    "maxLength": 36,
+                                    "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                                },
+                                "managementSubscriptionGuid": {
+                                    "type": "string",
+                                    "description": "Subscription GUID for the management subscription.",
+                                    "minLength": 36,
+                                    "maxLength": 36,
+                                    "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                                },
+                                "identityRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name for the identity subscription.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "monitoringRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name for the foundation monitoring resources.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                },
+                                "location": {
+                                    "type": "string",
+                                    "description": "Azure region for resource group deployments. Defaults to the deployment location if omitted."
+                                },
+                                "copAfwRgName": {
+                                    "type": "string",
+                                    "description": "Resource group name for the COP Azure Firewall resources (alerts). Defaults to the module's standard name.",
+                                    "minLength": 3,
+                                    "maxLength": 90
+                                }
+                            }
+                        }
+                    }
+                },
+                "foundationResources": {
+                    "type": "object",
+                    "description": "Names and location of pre-existing foundation resources.",
+                    "required": [
+                        "value"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "description": "Object containing references to existing foundation resources.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "contributorUamiName": {
+                                    "type": "string",
+                                    "description": "Name of the contributor User Assigned Managed Identity. Accepted for parameter-file compatibility; not read by this module.",
+                                    "minLength": 3,
+                                    "maxLength": 128
+                                },
+                                "monitoringUamiName": {
+                                    "type": "string",
+                                    "description": "Name of the monitoring User Assigned Managed Identity. The policy assignment and the alert rules run as it.",
+                                    "minLength": 3,
+                                    "maxLength": 128
+                                },
+                                "logAnalyticsWorkspaceName": {
+                                    "type": "string",
+                                    "description": "Name of the Log Analytics Workspace deployed by the foundation module.",
+                                    "minLength": 4,
+                                    "maxLength": 63
+                                },
+                                "actionGroupName": {
+                                    "type": "string",
+                                    "description": "Name of the Action Group deployed by the foundation module.",
+                                    "minLength": 1,
+                                    "maxLength": 260
+                                },
+                                "location": {
+                                    "type": "string",
+                                    "description": "Azure region used to resolve default names for foundation resources. Defaults to the deployment location if omitted."
+                                }
+                            }
+                        }
+                    }
+                },
+                "policyAuthoringScope": {
+                    "type": "object",
+                    "description": "Management group holding the policy definitions. mg-scope deployments only.",
+                    "required": [
+                        "value"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "description": "Name of the management group where the policy definitions are created. Must be at or above every managedScopeSet entry; equal is legal. Defaults to the management group the deployment targets.",
+                            "minLength": 1,
+                            "maxLength": 90
+                        }
+                    }
+                },
+                "managedScopeSet": {
+                    "type": "object",
+                    "description": "Management groups receiving the policy assignments, one nested deployment per entry. mg-scope deployments only.",
+                    "required": [
+                        "value"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "array",
+                            "description": "Array of management group names. An empty array resolves to [policyAuthoringScope], which reproduces the pre-split single-scope behaviour.",
+                            "items": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 90
+                            }
+                        }
+                    }
+                },
+                "targetSubscriptionIds": {
+                    "type": "object",
+                    "description": "Subscription IDs the data-collection policy is assigned to.",
+                    "required": [
+                        "value"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "array",
+                            "description": "Array of subscription GUIDs.",
+                            "items": {
+                                "type": "string",
+                                "minLength": 36,
+                                "maxLength": 36,
+                                "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                            }
+                        }
+                    }
+                },
+                "enableRemediation": {
+                    "type": "object",
+                    "description": "When true (the default), every policy assignment is paired with its remediation task.",
+                    "required": [
+                        "value"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "boolean",
+                            "description": "Deploy the remediation task with each policy assignment."
+                        }
+                    }
+                },
+                "copAfwTags": {
+                    "type": "object",
+                    "description": "Tags applied to all COP Azure Firewall resources.",
+                    "required": [
+                        "value"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "description": "Object containing tag key-value pairs. The listed tag names are documented; additional tag names are allowed.",
+                            "additionalProperties": {
+                                "type": "string",
+                                "description": "Any additional tag name is allowed. Tag values are limited to 256 characters.",
+                                "maxLength": 256
+                            },
+                            "properties": {
+                                "Application": {
+                                    "type": "string",
+                                    "description": "Application tag value."
+                                },
+                                "AutoOpsCOP": {
+                                    "type": "string",
+                                    "description": "COP identifier tag value."
+                                },
+                                "COPid": {
+                                    "type": "string",
+                                    "description": "COPid tag value."
+                                },
+                                "Environment": {
+                                    "type": "string",
+                                    "description": "Environment tag value."
+                                },
+                                "Owner": {
+                                    "type": "string",
+                                    "description": "Owner tag value."
+                                },
+                                "Country": {
+                                    "type": "string",
+                                    "description": "Country tag value."
+                                },
+                                "Description": {
+                                    "type": "string",
+                                    "description": "Description tag value."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
