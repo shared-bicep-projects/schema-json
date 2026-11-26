@@ -88,6 +88,14 @@
             "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
           }
         },
+        "licences": {
+          "description": "Optional (iac-bicep-landing-zone 0.3.0+). The Licences management group mg-licences-001 under Platform, for usage-based licence billing subscriptions.",
+          "type": "object",
+          "required": ["value"],
+          "properties": {
+            "value": { "$ref": "#/$defs/mgObjectWithSubscriptions" }
+          }
+        },
         "security": {
           "type": "object",
           "required": ["value"],
