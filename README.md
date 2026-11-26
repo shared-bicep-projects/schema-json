@@ -36,22 +36,33 @@ Validates ARM parameter files for the `iac-bicep-landing-zone` Bicep module. Def
 
 **Reference URL:**
 ```
-https://raw.githubusercontent.com/schema-json/schema-json/main/schema.landingzone.json#
+https://cdn.jsdelivr.net/gh/shared-bicep-projects/schema-json@main/schema.landingzone.json#
 ```
 
 **Required top-level parameters:**
 
 | Parameter | Description |
 |-----------|-------------|
-| `rootCompany` | Root management group, with optional `reader`/`contributor` principal arrays. |
-| `landingzone` | Landing zone management group (no subscriptions). |
-| `prod` | Production management group with optional subscriptions. |
+| `rootCompany` | Root management group, with a required `name` and optional `reader`/`contributor` principal arrays. |
+| `landingzones` | Landing zones management group with optional subscriptions. |
 | `platform` | Platform management group (no subscriptions). |
+| `security` | Security management group with optional subscriptions. |
 | `connectivity` | Connectivity management group with optional subscriptions. |
 | `identity` | Identity management group with optional subscriptions. |
 | `management` | Management management group with optional subscriptions. |
 
-**Optional parameters:** `test`, `avd`, `decomissioned`
+**Optional parameters** (each a management group with optional subscriptions):
+
+| Parameter | Description |
+|-----------|-------------|
+| `prod` | Production management group. |
+| `test` | Test management group. |
+| `avd` | Azure Virtual Desktop management group. |
+| `sandbox` | Sandbox management group. |
+| `decommissioned` | Decommissioned management group. |
+| `licences` | Licences management group `mg-licences-001` under Platform, for usage-based licence billing subscriptions (`iac-bicep-landing-zone` 0.3.0+). |
+
+No other top-level parameters are allowed.
 
 Each management group object supports:
 - `subscriptions` — array of Azure subscription IDs (where applicable)
